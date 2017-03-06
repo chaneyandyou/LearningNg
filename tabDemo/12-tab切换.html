@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>tab标签切换</title>
+    <style type="text/css">
+        * {
+            padding: 0;
+            margin: 0;
+            border: 0;
+            list-style: none;
+        }
+        .box {
+            width: 1000px;
+            margin: 50px auto;
+        }
+        .box .title {
+            width: 400px;
+            height: 44px;
+            border: 3px solid #ccc;
+            /*头部设置往下走3个像素,遮盖住下面的面的内容*/
+            position: relative;
+            top: 3px;
+            /*注意一定要设置背景颜色*/
+            background: #fff;
+            border-bottom: none;
+        }
+        .box .content {
+            width: 1000px;
+            height: 475px;
+            border: 3px solid #ccc;
+
+        }
+        .box .content img {
+            width: 1000px;
+            height: 475px;
+        }
+
+        .box ul {
+            overflow: hidden;
+        }
+
+        .box ul li {
+            float: left;
+            padding: 10px;
+        }
+
+        .box ul .cur {
+            color: red;
+            font-size: 18px;
+        }
+
+        /*把所有content下面的div给隐藏掉*/
+
+    </style>
+    <script src="https://cdn.static.runoob.com/libs/angular.js/1.4.6/angular.min.js"></script>
+</head>
+<body ng-app="app">
+
+
+<div class="box" ng-controller="tabController">
+    <div class="title">
+        <ul>
+            <li ng-class="{cur:type == 'shuxue'}" ng-mouseenter="myMousenter('shuxue')">数学</li>
+            <li ng-class="{cur:type == 'wuli'}" ng-mouseenter="myMousenter('wuli')">物理</li>
+            <li ng-class="{cur:type == 'huaxue'}" ng-mouseenter="myMousenter('huaxue')">化学</li>
+            <li ng-class="{cur:type == 'shengwu'}" ng-mouseenter="myMousenter('shengwu')">生物</li>
+        </ul>
+    </div>
+
+    <div class="content" ng-switch="type">
+        <div ng-switch-when="shuxue"><img src="image/class1.png" alt=""></div>
+        <div ng-switch-when="wuli"><img src="image/class2.png" alt=""></div>
+        <div ng-switch-when="huaxue"><img src="image/class3.png" alt=""></div>
+        <div ng-switch-when="shengwu"><img src="image/class4.png" alt=""></div>
+    </div>
+
+</div>
+
+
+</body>
+<script>
+    var app = angular.module("app", []);
+    app.controller("tabController",["$scope",function ($scope) {
+        $scope.type = "shuxue";
+        $scope.myMousenter=function (type) {
+            $scope.type = type;
+        }
+    }]);
+</script>
+
+</html>

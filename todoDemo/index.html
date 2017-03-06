@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="app" ng-controller="taskCtrl">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="css/style.css">
+    <script src="//cdn.bootcss.com/jquery/3.1.1/jquery.min.js"></script>
+    <script src="//cdn.bootcss.com/angular.js/1.5.0/angular.min.js"></script>
+    <script src="js/index.js"></script>
+
+</head>
+
+<body>
+<!--header头部logo-->
+<div class="logo">
+    <img src="./images/logo.png" alt="">
+</div>
+<!--header头部logo End-->
+
+
+<!--nav输入导航-->
+<div class="nav">
+    <div class="container">
+        <div class="con_left">
+            <img src="./images/logo2.png" alt="">
+        </div>
+        <div class="con_right">
+            <form action="#" ng-submit="submit($event)">
+                <input type="text" placeholder="请输入备忘内容..." id="content" ng-model="task">
+                <input type="submit" value="添加">
+            </form>
+        </div>
+    </div>
+</div>
+<!--nav输入导航 End-->
+
+<!--content todo内容-->
+<div class="content_list">
+    <div class="list_hd">
+        <ul>
+            <li class="active">待办事项</li>
+            <li>已完成事项</li>
+        </ul>
+    </div>
+    <div class="list_bd active">
+        <ul class="task">
+            <li class="item" ng-repeat="(key,taskItem) in taskList">
+                <input type="checkbox" ng-checked="taskItem.check" ng-click="checkBoxClick(key)">
+                <span class="item_content" ng-bind="taskItem.name"></span>
+                <input type="button" value="删除" class="del" ng-click="delete(key)">
+                <input type="button" value="详情" class="detail">
+            </li>
+        </ul>
+    </div>
+    <div class="list_bd active">
+        <ul class="finish_task">
+            <li class="item" ng-repeat="(key,taskItem) in finishTaskList">
+                <input type="checkbox" ng-checked="taskItem.check">
+                <span class="item_content" ng-bind="taskItem.name"></span>
+                <input type="button" value="删除" class="del">
+                <input type="button" value="详情" class="detail">
+            </li>
+        </ul>
+    </div>
+</div>
+<!--content todo内容 End-->
+<!-- 返回顶部-->
+<div class="back_top">
+    <img src="./images/Top.png" alt="">
+</div>
+<!-- 返回顶部 End-->
+</body>
+</html>
